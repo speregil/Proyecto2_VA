@@ -1,0 +1,167 @@
+@import url(http://fonts.googleapis.com/css?family=Changa+One|Roboto+Condensed:400,300);
+
+
+body{
+	font-family: 'Roboto Condensed', sans-serif;
+	
+	background-image:url(Dinosaur.jpg);
+	background-position:right bottom;
+	background-attachment:fixed;
+	background-repeat: no-repeat;
+	
+	
+	
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Changa One', cursive;
+	font-weight:normal;
+	margin:0px;
+	color:#932d4f;
+	
+}
+img, object, embed, video {
+	max-width: 100%;
+}
+.diaEscogido{
+	width:100%;
+	display:block;
+	clear:both;
+	float:left;
+	
+}
+header{
+	width:60%;
+	margin:0% auto;
+	padding-right:40%;
+	
+	
+	
+}
+
+
+section{
+	background-color:#FFFFFF;
+	box-shadow: 0px 0px 5px #ddd;
+	padding:1%;
+	margin-bottom:2%;
+	width:98%;
+	display:block;
+	clear:both;
+	float:left;
+}
+section h3{
+	display:block;
+	clear:both;
+	float:left;
+	width:100%;
+	margin-bottom:1%;
+	font-size:140%;
+	
+	
+}
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+
+
+
+
+/* Mobile Layout: 480px and below. */
+
+.ourGraph{
+	display:block;
+	clear:none;
+	float:left;
+	width:70%;
+	
+}
+
+
+.dayButtons{
+	display:block;
+	clear:none;
+	float:left;
+	width:30%;
+	
+}
+.dayButtons a{
+	display:block;
+	clear:both;
+	float:left;
+	background-color:#DEDEDE;
+	width:70%;
+	color:#474747;
+	padding:2%;
+	margin-bottom:2%;
+	cursor: pointer;
+	
+}
+.gridContainer {
+	margin:0 auto;
+	width: 100%;
+	padding-left: 2.275%;
+	padding-right: 2.275%;
+	clear: none;
+	float: none;
+}
+
+.hide_mobile {
+    display: none;
+}
+#questionStay svg{
+		width: 100%;
+	margin:0 auto;
+	display:inline;
+	
+}
+/*Estilos para medio dia de duración*/
+
+#questionStayHalfDay svg {
+	width: 100%;
+	height: 500px;
+}
+
+#questionStayHalfDay path.slice{
+	stroke-width:2px;
+}
+
+#questionStayHalfDay polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+.gridContainer {
+	width: 90.675%;
+	padding-left: 1.1625%;
+	padding-right: 1.1625%;
+	
+}
+
+
+.hide_tablet {
+    display: none;
+}
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+.gridContainer {
+	width: 88.5%;
+	max-width: 1232px;
+	padding-left: 0.75%;
+	padding-right: 0.75%;
+	
+}
+
+.hide_desktop {
+    display: none;
+}
+}
