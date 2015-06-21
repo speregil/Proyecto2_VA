@@ -45,7 +45,7 @@ d3.json("ciudades.json", function(error, data) {
             .style("left", xPosition + "px")
             .style("top", yPosition + "px")           
             .select("#value")
-            .text(d.city + ", " + d.country + "\n" + "destino: " + d.cityDestino + "\n" + "accidente: " + d.cityAccidente + "   "+ xPosition + " - " + yPosition);
+            .text("origen: " + d.city + "\n" + "destino: " + d.cityDestino + "\n" + "accidente: " + d.cityAccidente );
             
                         
             g2.selectAll("circle")
@@ -54,32 +54,27 @@ d3.json("ciudades.json", function(error, data) {
                   .append("circle")
               .attr("cx", function(d) {
 
-                if (xPosition == projection([d.lonDestino, d.latDestino])[0]) {
                   return projection([d.lonDestino, d.latDestino])[0];
-                };
                 
               })
               .attr("cy", function(d) {
-                if (yPosition == projection([d.lonDestino, d.latDestino])[1]) {
+
                   return projection([d.lonDestino, d.latDestino])[1];
-                };
                    
                })
-               .attr("r", 5);
+               .attr("r", 3);
             g3.selectAll("circle")
                   .data(data)
                   .enter()
                   .append("circle")
               .attr("cx", function(d) {
-                if (false) {
+                
                   return projection([d.lonAccidente, d.latAccidente])[0];
-                };
                 
               })
               .attr("cy", function(d) {
-                if (false) {
+
                   return projection([d.lonAccidente, d.latAccidente])[1];
-                };
                    
                })
                .attr("r", 5);
