@@ -9,8 +9,10 @@ Pilot, approach, runway, crew, failure, engine, landing, WEATHER, MOUNTAIN, rout
 'Engine'
 Aeroflot, Pan American World Airways, American Airlines, Air Taxi, United Airlines
 
+5 aviones más estrellados:
 [('Douglas DC-3', 157), ('de Havilland Canada DHC-6 Twin Otter 300', 44), ('Douglas C-47', 22), 
 ('Douglas C-47A', 20), ('Douglas DC-4', 19)]
+4 son Douglas
 
 
 La mayoría de estrelladas fueron cuando se estaba acercando al destino, parece
