@@ -1,9 +1,5 @@
-"During a demonstration flight, a U.S. Army flyer flown by Orville Wright nose-dived into the ground from a height of approximately 75 feet, killing Lt. Thomas E. Selfridge who was a passenger. This was the first recorded airplane fatality in history.  One of two propellers separated in flight, tearing loose the wires bracing the rudder and causing the loss of control of the aircraft.  Orville Wright suffered broken ribs, pelvis and a leg.  Selfridge suffered a crushed skull and died a short time later."
-
-
-
-
-
+Date,Time,Location,Operator,Flight #,Route,Type,Registration,cn/In,Aboard,Fatalities,Ground,Summary
+09/17/1908,17:18,"Fort Myer, Virginia",Military - U.S. Army,,Demonstration,Wright Flyer III,,1,2,1,0,"During a demonstration flight, a U.S. Army flyer flown by Orville Wright nose-dived into the ground from a height of approximately 75 feet, killing Lt. Thomas E. Selfridge who was a passenger. This was the first recorded airplane fatality in history.  One of two propellers separated in flight, tearing loose the wires bracing the rudder and causing the loss of control of the aircraft.  Orville Wright suffered broken ribs, pelvis and a leg.  Selfridge suffered a crushed skull and died a short time later."
 07/12/1912,06:30,"AtlantiCity, New Jersey",Military - U.S. Navy,,Test flight,Dirigible,,,5,5,0,"First U.S. dirigible Akron exploded just offshore at an altitude of 1,000 ft. during a test flight."
 08/06/1913,,"Victoria, British Columbia, Canada",Private,-,,Curtiss seaplane,,,1,1,0,"The first fatal airplane accident in Canada occurred when American barnstormer, John M. Bryant, California aviator was killed."
 09/09/1913,18:30,Over the North Sea,Military - German Navy,,,Zeppelin L-1 (airship),,,20,14,0,The airship flew into a thunderstorm and encountered a severe downdraft crashing 20 miles north of Helgoland Island into the sea. The ship broke in two and the control car immediately sank drowning its occupants.
@@ -155,7 +151,7 @@
 07/24/1928,,"Waalhaven harbor, Netherlands",KLM Royal Dutch Airlines,,,Fokker (KLM) F.III,H-NABR,1533 (KLM-1),1,1,0,The plane crashed into the Waalhaven harbor.
 08/25/1928,,"Near Port Townsend, BC, Canada",British Columbia Airways,,Victoria - Seattle,Ford 4-AT-B Tri Motor,G-CATX,4-AT-26,7,7,0,Crashed into Puget Sound in dense fog.  Considered the first Canadian air disaster.
 09/02/1928,,"Toul, France",CIDNA,,,Bleriot Spad 56,,,3,3,0,
-09/04/1928,,"Adelaide Hills, Australia,Qantas,,,de Havilland DH.50J,G-AUHI,,2,1,0,"Following the conclusion of an aerial tour carrying Sir John Salmond, the aircraft departed Adelaide piloted by C. W. A. Scott with an engineer as passenger. Control was lost in the cloud during an attempt to cross the Adelaide Hills; the aircraft crashed and caught fire."
+09/04/1928,,"Adelaide Hills, Australia",Qantas,,,de Havilland DH.50J,G-AUHI,,2,1,0,"Following the conclusion of an aerial tour carrying Sir John Salmond, the aircraft departed Adelaide piloted by C. W. A. Scott with an engineer as passenger. Control was lost in the cloud during an attempt to cross the Adelaide Hills; the aircraft crashed and caught fire."
 09/04/1928,,"Pocatello, Idaho",National Parks Airways,,,Fokker Super Universal,NC7242,809,7,7,0,
 09/06/1928,,"Heroldbach, Germany",Deutsche Lufthansa,,,Fokker FG III,D-180,1531,3,3,0,Engine failure.
 10/04/1928,,"Gerona, Spain",Aeropostale,,,Breguet 14,,,3,3,0,
