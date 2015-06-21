@@ -14,17 +14,45 @@
     "lonAccidente":-70.00
   },
   {
-    "city":"BANGKOK",
-    "country":"THAILAND",
+    "city":"Bankok0",
+    "country":"THAILAND0",
     "lat":13.75,
-    "lon":100.48,
-	"cityDestino":"yyyyy",
-    "countryDestino":"BRAZIL",
+    "lon":190.48,
+	"cityDestino":"yyyyy0",
+    "countryDestino":"BRAZIL0",
     "latDestino":-10.67,
     "lonDestino":-40.43,
-	"cityAccidente":"zzzzz",
-    "countryAccidente":"Colombia",
-    "latAccidente":-8.09,
+	"cityAccidente":"zzzzz1",
+    "countryAccidente":"Colombia0",
+    "latAccidente":-10.09,
+    "lonAccidente":-30.00
+  },
+  {
+    "city":"Bogota1",
+    "country":"Colombia1",
+    "lat":5.38,
+    "lon":-94.05,
+    "cityDestino":"BRASILIA1",
+    "countryDestino":"BRAZIL1",
+    "latDestino":-20.67,
+    "lonDestino":-97.43,
+    "cityAccidente":"Leticia1",
+    "countryAccidente":"Colombia1",
+    "latAccidente":-30.09,
+    "lonAccidente":-80.00
+  },
+  {
+    "city":"Bogota2",
+    "country":"Colombia2",
+    "lat":8.38,
+    "lon":-64.05,
+    "cityDestino":"BRASILIA2",
+    "countryDestino":"BRAZIL2",
+    "latDestino":-35.67,
+    "lonDestino":-57.43,
+    "cityAccidente":"Leticia2",
+    "countryAccidente":"Colombia2",
+    "latAccidente":-23.09,
     "lonAccidente":-60.00
   }
 ]
