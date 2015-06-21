@@ -1,0 +1,17 @@
+Son 3407 accidentes
+1452 contienen la palabra 'crashed'
+Y las palabras más frecuentes cuando hay crashed son
+Pilot, approach, crew, runway, engine, airport, failure, landing, altitude, taking
+
+Cuando no hay crashed
+Pilot, approach, runway, crew, failure, engine, landing, WEATHER, MOUNTAIN, route
+
+'Engine'
+Aeroflot, Pan American World Airways, American Airlines, Air Taxi, United Airlines
+
+[('Douglas DC-3', 157), ('de Havilland Canada DHC-6 Twin Otter 300', 44), ('Douglas C-47', 22), 
+('Douglas C-47A', 20), ('Douglas DC-4', 19)]
+
+
+La mayoría de estrelladas fueron cuando se estaba acercando al destino, parece
+Seguido por accidentes al momento de despegar
