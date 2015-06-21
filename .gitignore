@@ -101,3 +101,7 @@ $RECYCLE.BIN/
 *.lnk
 
 va_air_crash/web_viewer/static/js/script_MapaInicial.js
+
+va_air_crash/web_viewer/static/index.html
+
+va_air_crash/web_viewer/static/static/js/drawMap.js
