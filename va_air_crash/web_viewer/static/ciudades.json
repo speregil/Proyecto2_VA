@@ -1,0 +1,30 @@
+[
+    {
+    "city":"Bogota",
+    "country":"Colombia",
+    "lat":4.38,
+    "lon":-74.05,
+	"cityDestino":"BRASILIA",
+    "countryDestino":"BRAZIL",
+    "latDestino":-15.67,
+    "lonDestino":-47.43,
+	"cityAccidente":"Leticia",
+    "countryAccidente":"Colombia",
+    "latAccidente":-4.09,
+    "lonAccidente":-70.00
+  },
+  {
+    "city":"BANGKOK",
+    "country":"THAILAND",
+    "lat":13.75,
+    "lon":100.48,
+	"cityDestino":"yyyyy",
+    "countryDestino":"BRAZIL",
+    "latDestino":-10.67,
+    "lonDestino":-40.43,
+	"cityAccidente":"zzzzz",
+    "countryAccidente":"Colombia",
+    "latAccidente":-8.09,
+    "lonAccidente":-60.00
+  }
+]

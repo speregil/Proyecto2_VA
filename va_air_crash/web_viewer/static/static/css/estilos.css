@@ -1,0 +1,99 @@
+@import url(http://fonts.googleapis.com/css?family=Bangers|Roboto+Condensed:400italic,400,700);
+
+/* estilos estructura */
+body {
+	margin: 0px;
+	font-family: 'Roboto Condensed', sans-serif;
+	color:#57483C;
+	
+}
+
+h1{
+	font-family: 'Bangers', cursive;
+	font-weight:normal;
+	
+}
+
+#logo{
+	background: url(iconAfraid.png) no-repeat;
+	background-size: 60px 60px;
+	height: 60px;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	line-height: 70px;
+	font-size: 30pt;
+	padding-left: 60px;	
+}
+/*EStilos genericos de mis envolturas*/
+
+.fondo {
+	display: block;
+	clear: both;
+	float: left;
+	width: 100%;
+	
+}
+.envolturaGenerica {
+	margin: 0 auto;
+	width: 1140px;
+}
+#envolturaCabezote {
+	background-color: #fff;
+}
+#cabezote p {
+	margin:0px;
+	margin-left: 60px;
+	padding-bottom:30px;
+	
+	width:50%;	
+}
+#envolturaCabezote .envolturaGenerica #cabezote {
+	background-image: url(bg_header.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+}
+
+#envolturaOtros {
+	background-color: #fff;
+}
+#envolturaFooter {
+	background-color: #57483C;
+	min-height: 360px;
+}
+
+/* Estilos mapa */
+
+#envolturaMapa {
+	
+
+	background-color: #253640;
+	background-repeat: no-repeat;
+	background-position: center top;
+	
+}
+
+#mapa {
+	margin:20px;
+	width:960px;
+	height:500px;
+	background-color:#C6DAE6;
+	font-weight: 700;
+	
+	box-shadow: 0px 0px 10px #B9B9B9;
+	
+}
+
+svg text{
+	font-size:12px;
+	font-weight:normal;
+	
+}
+
+path {
+  stroke: white;
+  stroke-width: 0.25px;
+  fill: #C7BFB9;
+}
+

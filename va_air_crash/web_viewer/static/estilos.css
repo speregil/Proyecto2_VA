@@ -1,0 +1,41 @@
+/* CSS Document */
+body{
+	margin:0px;
+}
+
+/*EStilos genericos de mis envolturas*/
+.fondo{
+	display:block;
+	clear:both;
+	float:left;
+	width:100%;	
+	background-color:#3C6;
+	
+}
+
+.envolturaGenerica{
+	margin:0 auto;
+	width:80%;
+	
+	background-color:#399;
+	border:2px solid #FFF;
+	min-height:70px;
+	
+	
+}
+
+#envolturaCabezote{ background-color:#fff; height:115px;}
+#envolturaMapa{ 
+	background-image: url(imagenes/bg_map.jpg); 
+	height:530px;
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-color:#3aa3bc;
+			
+}
+#envolturaOtros{ background-color:#fff;}
+
+#envolturaFooter{ 
+	background-color:#222222; min-height:360px;
+}
+
