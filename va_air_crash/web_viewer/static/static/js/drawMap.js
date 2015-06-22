@@ -24,7 +24,7 @@ var g4 = svg.append("g").attr("class","lineaVuelo");
 var g5 = svg.append("g").attr("class","lineaVuelo");
 
 // load and display the World
-d3.json("world-110m2.json", function(error, topology) {
+d3.json("topology", function(error, topology) {
 
 // load and display the cities
 d3.json("ciudades.json", function(error, data) {

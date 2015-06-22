@@ -6,23 +6,8 @@ import json
 from geopy.geocoders import Nominatim
 
 geolocator = Nominatim()
-data = pd.DataFrame()
 topology = None
-test = None
-template_topo = {
-    "city":"NaN",
-    "country":"NaN",
-    "lat":0,
-    "lon":0,
-	"cityDestino":"NaN",
-    "countryDestino":"NaN",
-    "latDestino":-15.67,
-    "lonDestino":-47.43,
-	"cityAccidente":"NaN",
-    "countryAccidente":"NaN",
-    "latAccidente":-4.09,
-    "lonAccidente":-70.00
-  }
+
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -49,6 +34,17 @@ class CuantosCiudadHandler(tornado.web.RequestHandler):
     def initialize(self, df):
         self.df = df
         
+class TrimestreHandler(tornado.web.RequestHandler):
+    def get(self):
+        df = self.df
+        trimestre = self.get_argument("trimestre")
+        df_datos = filtro_trimestre(trimestre, df)
+        dic = df_datos.to_dict("record")
+        self.write({"array":dic})
+    
+    def initialize(self, df):
+        self.df = df
+        
 class TopologyHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(topology)
@@ -68,46 +64,61 @@ def datos_iniciales(df):
             location = geolocator.geocode(index[1])
         except:
             pass
-        if(not location is None):
-            limpiar_template()
-            template_topo["city"] = index[1]
-            template_topo["lat"] = location.latitude
-            template_topo["lon"] = location.longitude
-            list_data.append(template_topo)
+        
     return list_data
 
 def cuantos_ciudad(ciudad, df):
     df_gets = df.loc[df['Location'].str.contains(ciudad)]
     return df_gets
+    
+def filtro_trimestre(trimestre, df):
+    mesInicial = 0
+    mesFinal = 0
+    if(trimestre == 1):
+        mesInicial = 1
+        mesFinal = 3
+    elif(trimestre == 2):
+        mesInicial = 4
+        mesFinal = 6
+    elif(trimestre == 3):
+        mesInicial = 7
+        mesFinal = 9
+    elif(trimestre == 4):
+        mesInicial = 10
+        mesFinal = 12
+        
+    df_tri = df.loc[(df["time"].dt.month >= mesInicial) & (df["time"].dt.month <= mesFinal)]
+    df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
+                        'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
+                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Summary'))
+    for i in df_tri.index.values.tolist():
+        df_final.loc[len(df_final)+1]=[df_tri['cityOrigen'][i], df_tri['latOrigen'][i], df_tri['lonOrigen'][i],
+                                  df_tri['cityDestino'][i], df_tri['latDestino'][i], df_tri['lonDestino'][i],
+                                  df_tri['cityAccidente'][i], df_tri['latAccidente'][i], df_tri['lonAccidente'][i],
+                                  df_tri[df.columns[0]][i], df_tri['Time'][i], df_tri['Type'][i], df_tri['Aboard'][i],
+                                  df_tri['Fatalities'][i], df_tri['Ground'][i], df_tri['Summary'][i]]
+    return df_final
 
-def limpiar_template():
-    global template_topo    
-    template_topo = {
-    "city":"NaN",
-    "country":"NaN",
-    "lat":0,
-    "lon":0,
-	"cityDestino":"NaN",
-    "countryDestino":"NaN",
-    "latDestino":-15.67,
-    "lonDestino":-47.43,
-	"cityAccidente":"NaN",
-    "countryAccidente":"NaN",
-    "latAccidente":-4.09,
-    "lonAccidente":-70.00
-    }
     
 if __name__ == "__main__":
-    path = os.path.join(os.path.dirname(__file__), "../../../Crashes.csv")
+    path = os.path.join(os.path.dirname(__file__), "../../../df_final.csv")
     print("Iniciando...")
     print("Cargando Datos...")
     df = pd.read_csv(path)
-    df['Location'].fillna('NaN', inplace=True)
+    
+    print("Dandole formato a los datos...")
+    df.rename(columns={'OrigenCiudad': 'cityOrigen', 'OrigenLatitud': 'latOrigen', 'OrigenLongitud': 'lonOrigen',
+                  'DestinoCiudad': 'cityDestino', 'DestinoLatitud': 'latDestino', 'DestinoLongitud': 'lonDestino',
+                  'CrashCiudad': 'cityAccidente', 'CrashPais': 'countryAccidente', 'CrashLatitud': 'latAccidente',
+                  'CrashLongitud': 'lonAccidente'}, inplace=True)
+
+    df["time"] = pd.to_datetime(df[df.columns[0]], format="%m/%d/%Y")
+    
+    print("Cargando Topologia")
     with open("world-110m2.json") as json_file:
         topology = json.load(json_file)
         
-    with open("ciudades.json") as json_file:
-        test = json.load(json_file)
+    
     
     
     #df["time"] = pd.to_datetime(df.Timestamp, format="%Y-%m-%d %H:%M:%S")
@@ -116,6 +127,7 @@ if __name__ == "__main__":
         (r"/", MainHandler),
         (r"/inicio", InicioHandler, {"df":df}),
         (r"/ciudad", CuantosCiudadHandler, {"df":df}),
+        (r"/trimestre", TrimestreHandler, {"df":df}),
         (r"/topology", TopologyHandler),
         (r"/static/(.*)", tornado.web.StaticFileHandler,
             {"path": settings["static_path"]})
