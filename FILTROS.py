@@ -22,6 +22,9 @@ elif(trimestre == 3):
 elif(trimestre == 4):
     mesInicial = 10
     mesFinal = 12
+elif(trimestre == 0):
+    mesInicial = 1
+    mesFinal = 12
 
 df["time"] = pd.to_datetime(df[df.columns[0]], format="%m/%d/%Y")
 df_tri = df.loc[(df["time"].dt.month >= mesInicial) & (df["time"].dt.month <= mesFinal)]
