@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
+<script src="static/js/jquery-1.11.3.min.js"></script>
+<style>
+        #mapa svg .puntoOrigen{
+			background-color:#000000 !important;
+			
+		}
+        </style>
 </head>
 <body>
 <div id="envolturaCabezote" class="fondo">
@@ -16,7 +23,42 @@
 <div id="envolturaMapa" class="fondo">
   <div class="envolturaGenerica">
     <div id="mapa"> </div>
-    <div id="mapaSliders"> </div>
+    <div id="mapaSliders">
+   
+			
+			<div>
+            	<div id="circuloOrigen"></div>
+                <div>Departure cities</div>
+				<div class="botonesMostrarESconder"><a class="esconderOrigenes">Hide</a>
+                <a class="mostrarOrigenes">Show</a></div>
+			</div>
+            <div>
+            	<div id="circuloAccidente"></div>
+                <div>Crash cities</div>
+				<div class="botonesMostrarESconder"><a class="esconderAccidente">Hide</a>
+                <a class="mostrarAccidente">Show</a></div>
+			</div>
+            <div>
+            	<div id="circuloDestino"></div>
+                <div>Arrival cities</div>
+				<div class="botonesMostrarESconder"><a class="esconderDestino">Hide</a>
+                <a class="mostrarDestino">Show</a></div>
+			</div>
+            <div>
+            	<div id="lineaOrigAcc">---</div>
+                <div>Departure - Crash path</div>
+				<div class="botonesMostrarESconder"><a class="esconderLineaOrigenAcciente">Hide</a>
+                <a class="mostrarLineaOrigenAcciente">Show</a></div>
+			</div>
+            <div>
+            	<div id="lineaAccDest">---</div>
+                <div>Crash - Arrival path</div>
+				<div class="botonesMostrarESconder"><a class="esconderLineaAccienteDestino">Hide</a>
+                <a class="mostrarLineaAccienteDestino">Show</a></div>
+			</div>
+			
+		</section>
+    </div>
   </div>
 </div>
 <div id="envolturaOtros" class="fondo">
@@ -78,5 +120,46 @@
 <script src="static/js/tooltip.js"></script> 
 <script src="static/js/llamados.js"></script>
 <!--<script src="static/js/drawMap.js"></script>-->
+
+<script>
+			$(document).ready(function() {
+				$('.esconderOrigenes').click(function(){								
+					$('#mapa svg .puntoOrigen').css({"opacity": 0 });					
+				});
+				$('.mostrarOrigenes').click(function(){								
+					$('#mapa svg .puntoOrigen').css({"opacity": 1 });					
+				});
+				$('.esconderAccidente').click(function(){								
+					$('#mapa svg .puntoAccidente').css({"opacity": 0 });					
+				});
+				$('.mostrarAccidente').click(function(){								
+					$('#mapa svg .puntoAccidente').css({"opacity": 1 });					
+				});
+				$('.esconderDestino').click(function(){								
+					$('#mapa svg .puntoDestino').css({"opacity": 0 });					
+				});
+				$('.mostrarDestino').click(function(){								
+					$('#mapa svg .puntoDestino').css({"opacity": 1 });					
+				});
+				$('.esconderLineaOrigenAcciente').click(function(){								
+					$('#mapa svg .lineaOrigenAccidente').css({"opacity": 0 });					
+				});
+				$('.mostrarLineaOrigenAcciente').click(function(){								
+					$('#mapa svg .lineaOrigenAccidente').css({"opacity": 1 });					
+				});
+				$('.esconderLineaAccienteDestino').click(function(){								
+					$('#mapa svg .lineaAccidenteDestino').css({"opacity": 0 });					
+				});
+				$('.mostrarLineaAccienteDestino').click(function(){								
+					$('#mapa svg .lineaAccidenteDestino').css({"opacity": 1 });					
+				});
+				
+				
+			});	
+			
+			
+			
+</script>
+        
 </body>
 </html>

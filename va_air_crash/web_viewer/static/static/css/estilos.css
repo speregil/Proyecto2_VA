@@ -95,13 +95,17 @@ input#Filter{
 	background-position: center top;
 }
 #mapa {
-	margin: 20px;
+	margin: 20px 20px 0px 20px;
 	width: 1000px;
 	height: 500px;
 	background-color: #C6DAE6;
 	font-weight: 700;
 	box-shadow: 0px 0px 10px #B9B9B9;
+	display:block;
+	clear:both;
+	float:left;
 }
+
 svg text {
 	font-size: 12px;
 	font-weight: normal;
@@ -133,3 +137,79 @@ circle:hover {
 	padding:2px;
 	
 }
+
+#mapaSliders{
+	background-color:#181F23;
+	display:block;
+	clear:both;
+	float:left;
+	width: 1000px;
+	margin: 0px 20px 10px 20px;
+	padding:10px 0px;
+	
+	
+}
+#mapaSliders> div{
+	display:block;
+	clear:none;
+	float:left;
+	width:16%;
+	margin:0 2%;
+	color:#DDE9F0;
+	
+}
+
+.botonesMostrarESconder a{
+	display:block;
+	clear:none;
+	float:left;
+	width:50px;
+	height:15px;
+	font-size:11px;
+	background-color:#DABFAA;
+	color:#072B58;
+	text-align:center;
+	line-height:15px;
+	margin:0 5px 0 0;
+	cursor:pointer;
+	
+}
+
+#circuloOrigen{
+	width:10px;
+	height:10px;
+	border-radius:5px;
+	background-color:#0F0;	
+}
+
+#circuloAccidente{
+	width:10px;
+	height:10px;
+	border-radius:5px;
+	background-color:#EF609A;	
+}
+
+
+#circuloDestino{
+	width:10px;
+	height:10px;
+	border-radius:5px;
+	background-color:#FCEE21;	
+}
+
+#lineaOrigAcc
+{
+	width:20px;
+	height:10px;
+
+	color:#8095A3;	
+}
+
+#lineaAccDest{
+	width:20px;
+	height:10px;
+
+	color:#8095A3;	
+}
+
+

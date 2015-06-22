@@ -147,7 +147,7 @@ g.selectAll("path")
         }
         ));
 	 //Dibujar los puntos de ciudades de accidente
-	 g2.selectAll("circle")
+	 g3.selectAll("circle")
        .data(dataset)
        .enter()
        .append("circle")
@@ -174,7 +174,7 @@ g.selectAll("path")
         }
         ));
 		//Dibujar los puntos de ciudades de destino
-	  g3.selectAll("circle")
+	  g2.selectAll("circle")
        .data(dataset)
        .enter()
        .append("circle")
@@ -231,7 +231,13 @@ var zoom = d3.behavior.zoom()
             .attr("d", path.projection(projection));
         g.selectAll("path")  
             .attr("d", path.projection(projection)); 
-    
+    g1.attr("transform","translate("+ 
+            d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+        g1.selectAll("circle")
+            .attr("d", path.projection(projection));
+        g1.selectAll("path")  
+            .attr("d", path.projection(projection)); 
+	
     g2.attr("transform","translate("+ 
             d3.event.translate.join(",")+")scale("+d3.event.scale+")");
         g2.selectAll("circle")
