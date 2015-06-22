@@ -36,18 +36,68 @@ class CuantosCiudadHandler(tornado.web.RequestHandler):
         
 class TrimestreHandler(tornado.web.RequestHandler):
     def get(self):
-        print("llegue a trimestre")
         df = self.df
         trimestre = self.get_argument("trimestre")
         df_datos = filtro_trimestre(trimestre, df)
         dic = df_datos.to_dict("record")
-        print(dic)
+        self.write({"array":dic})
+        
+    
+    def initialize(self, df):
+        self.df = df
+    
+class OrigenHandler(tornado.web.RequestHandler):
+    def get(self):
+        df = self.df
+        minimo = self.get_argument("minimo")
+        maximo = self.get_argument("maximo")
+        df_datos = filtro_ciudades_origen(minimo, maximo, df)
+        dic = df_datos.to_dict("record")
         self.write({"array":dic})
         
     
     def initialize(self, df):
         self.df = df
         
+class DestinoHandler(tornado.web.RequestHandler):
+    def get(self):
+        df = self.df
+        minimo = self.get_argument("minimo")
+        maximo = self.get_argument("maximo")
+        df_datos = filtro_ciudades_destino(minimo, maximo, df)
+        dic = df_datos.to_dict("record")
+        self.write({"array":dic})
+        
+    
+    def initialize(self, df):
+        self.df = df
+        
+class AereolineaHandler(tornado.web.RequestHandler):
+    def get(self):
+        df = self.df
+        minimo = self.get_argument("minimo")
+        maximo = self.get_argument("maximo")
+        df_datos = filtro_aerolineas(minimo, maximo, df)
+        dic = df_datos.to_dict("record")
+        self.write({"array":dic})
+        
+    
+    def initialize(self, df):
+        self.df = df
+        
+class YearHandler(tornado.web.RequestHandler):
+    def get(self):
+        df = self.df
+        minimo = self.get_argument("minimo")
+        maximo = self.get_argument("maximo")
+        df_datos = filtro_anios(minimo, maximo, df)
+        dic = df_datos.to_dict("record")
+        self.write({"array":dic})
+        
+    
+    def initialize(self, df):
+        self.df = df
+
 class TopologyHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(topology)
@@ -116,14 +166,14 @@ def filtro_ciudades_origen(minimo, maximo, df):
     df_crashes = df.loc[df["cityOrigen"].isin(results)]
     
     df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
-                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
-                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date',
+                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator'))
     for i in df_crashes.index.values.tolist():
             df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
                                       df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
                                       df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
-                                      df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
-                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+                                      df_crashes[df.columns[0]][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i]]
     
     return df_final
     
@@ -138,14 +188,14 @@ def filtro_ciudades_destino(minimo, maximo, df):
     df_crashes = df.loc[df["cityDestino"].isin(results)]
     
     df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
-                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
-                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date',
+                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator'))
     for i in df_crashes.index.values.tolist():
             df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
                                       df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
                                       df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
-                                      df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
-                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+                                      df_crashes[df.columns[0]][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i]]
     
     return df_final
     
@@ -160,31 +210,31 @@ def filtro_aerolineas(minimo, maximo, df):
     df_crashes = df.loc[df["Operator"].isin(results)]
     
     df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
-                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
-                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date',
+                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator'))
     for i in df_crashes.index.values.tolist():
             df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
                                       df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
                                       df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
-                                      df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
-                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+                                      df_crashes[df.columns[0]][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i]]
     
     return df_final
     
 def filtro_anios(minimo, maximo, df):
     minimo = int(minimo)
     maximo = int(maximo)
-    df_crashes = df.loc[(df["time"].dt.year >= 2009 - maximo ) & (df["time"].dt.year <= 2009 - minimo)]
+    df_crashes = df.loc[(df["Date"].dt.year >= 2009 - maximo ) & (df["Date"].dt.year <= 2009 - minimo)]
     df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
-                        'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
-                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+                        'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date',
+                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator'))
     for i in df_crashes.index.values.tolist():
         df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
                                   df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
                                   df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
-                                  df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
-                                  df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
-    print df_final
+                                  df_crashes['Date'[i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                  df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i]]]
+    return df_final
     
 if __name__ == "__main__":
     path = os.path.join(os.path.dirname(__file__), "../../../Datos2utf8-2.csv")
@@ -214,6 +264,10 @@ if __name__ == "__main__":
         (r"/inicio", InicioHandler, {"df":df}),
         (r"/ciudad", CuantosCiudadHandler, {"df":df}),
         (r"/trimestre", TrimestreHandler, {"df":df}),
+        (r"/origen", OrigenHandler, {"df":df}),
+        (r"/destino", DestinoHandler, {"df":df}),
+        (r"/aereolinea", AereolineaHandler, {"df":df}),
+        (r"/anio", YearHandler, {"df":df}),
         (r"/topology", TopologyHandler),
         (r"/static/(.*)", tornado.web.StaticFileHandler,
             {"path": settings["static_path"]})

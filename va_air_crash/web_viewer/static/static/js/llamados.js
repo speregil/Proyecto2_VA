@@ -7,6 +7,45 @@
 	var specificHeightDomainWhenUpdate;
 	firstLoad();
 	
+	function OrigenLoad() { 		
+        console.log("Leyendo Datos..."); 
+		var minimo = $('#desdeDepartureCrashes').val();
+		var maximo = $('#hastaDepartureCrashes').val();
+		var url="origen?minimo="+ minimo + "&maximo=" + maximo;
+			console.log(url);
+        d3.json(url, function (e, d) {
+			console.log(e);
+            crearArray(d.array);
+			
+        });
+    }
+	
+	function DestinoLoad() { 		
+        console.log("Leyendo Datos..."); 
+		var minimo = $('#desdeArrivalCrashes').val();
+		var maximo = $('#hastaArrivalCrashes').val();
+		var url="destino?minimo="+ minimo + "&maximo=" + maximo;
+			console.log(url);
+        d3.json(url, function (e, d) {
+			console.log(e);
+            crearArray(d.array);
+			
+        });
+    }
+	
+	function AereolineaLoad() { 		
+        console.log("Leyendo Datos..."); 
+		var minimo = $('#desdeAirlineCrashes').val();
+		var maximo = $('#hastaAirlineCrashes').val();
+		var url="aereolinea?minimo="+ minimo + "&maximo=" + maximo;
+			console.log(url);
+        d3.json(url, function (e, d) {
+			console.log(e);
+            crearArray(d.array);
+			
+        });
+    }
+	
 	function firstLoad() { 		
         console.log("reading guest");        
 		var url="trimestre?trimestre=0";
