@@ -74,16 +74,16 @@ def cuantos_ciudad(ciudad, df):
 def filtro_trimestre(trimestre, df):
     mesInicial = 0
     mesFinal = 0
-    if(trimestre == 1):
+    if(trimestre == '1'):
         mesInicial = 1
         mesFinal = 3
-    elif(trimestre == 2):
+    elif(trimestre == '2'):
         mesInicial = 4
         mesFinal = 6
-    elif(trimestre == 3):
+    elif(trimestre == '3'):
         mesInicial = 7
         mesFinal = 9
-    elif(trimestre == 4):
+    elif(trimestre == '4'):
         mesInicial = 10
         mesFinal = 12
         
