@@ -14,6 +14,7 @@ elif(trimestre == 4):
     mesInicial = 10
     mesFinal = 12
 
+#IMPORTANTE PARA NOMBRES DE CAMPOS DE JSON
 df.rename(columns={'OrigenCiudad': 'cityOrigen', 'OrigenLatitud': 'latOrigen', 'OrigenLongitud': 'lonOrigen',
                   'DestinoCiudad': 'cityDestino', 'DestinoLatitud': 'latDestino', 'DestinoLongitud': 'lonDestino',
                   'CrashCiudad': 'cityAccidente', 'CrashPais': 'countryAccidente', 'CrashLatitud': 'latAccidente',
