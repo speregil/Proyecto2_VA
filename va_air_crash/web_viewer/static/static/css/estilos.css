@@ -4,6 +4,7 @@ body {
 	margin: 0px;
 	font-family: 'Roboto Condensed', sans-serif;
 	color: #57483C;
+	font-size:11pt;
 }
 h1 {
 	font-family: 'Bangers', cursive;
@@ -31,7 +32,7 @@ h1 {
 }
 .envolturaGenerica {
 	margin: 0 auto;
-	width: 1140px;
+	width: 1000px;
 }
 #envolturaCabezote {
 	background-color: #fff;
@@ -48,11 +49,43 @@ h1 {
 	background-repeat: no-repeat;
 }
 #envolturaOtros {
-	background-color: #fff;
+	background-color: #253640;
+	color:#fff;
+}
+#todosFiltros .filtrosVuelos{
+	display:block;
+	clear:none;
+	float:left;
+	width:17%;
+	margin:0 1.5% 1.5% 1.5%;
+	
+}
+
+.filtrosVuelos h3{
+	padding:0;
+	margin:0;
+	color: #E9D9CC;
+}
+.filtrosVuelos div{
+	padding:10px 0px;
+	
+}
+
+input#Filter{
+	width:100px;
+	height:40px;
+	display:block;
+	clear:both;
+	float:right;
+	color:#FFFFFF;
+	background-color:#F20057;
+	border:solid 1px #000000;
+	font-size:14pt;
+	
 }
 #envolturaFooter {
 	background-color: #57483C;
-	min-height: 360px;
+	min-height: 20px;
 }
 /* Estilos mapa */
 
@@ -63,7 +96,7 @@ h1 {
 }
 #mapa {
 	margin: 20px;
-	width: 960px;
+	width: 1000px;
 	height: 500px;
 	background-color: #C6DAE6;
 	font-weight: 700;

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
@@ -14,23 +15,67 @@
 </div>
 <div id="envolturaMapa" class="fondo">
   <div class="envolturaGenerica">
-  
     <div id="mapa"> </div>
-    
     <div id="mapaSliders"> </div>
   </div>
 </div>
 <div id="envolturaOtros" class="fondo">
-  <div class="envolturaGenerica"></div>
+  <div class="envolturaGenerica">
+    <form>
+    <div id="todosFiltros">
+      <div class="filtrosVuelos"> 
+      <h3 id="departure">Departure cities</h3>
+      <div>
+      Show me flights from departure cities that have been involved between
+      </div>
+        <input name="desdeDepartureCrashes" type="text" value="1" size="3">
+        and
+        <input type="text" name="hastaDepartureCrashes" value="10" size="3">
+        crashes </div>
+      <div class="filtrosVuelos"> 
+      <h3 id="arrival">Arrival cities</h3>
+      <div>Show me flights to arrival cities that have been involved between</div>
+        <input type="text" name="desdeArrivalCrashes" value="1" size="3">
+        and
+        <input type="text" name="hastaArrivalCrashes" value="10" size="3">
+        crashes </div>
+      <div class="filtrosVuelos"> 
+      <h3 id="Airlines">Airlines</h3>
+      <div>Show me Airlines that have been involved between<br><br></div>
+        <input type="text" name="desdeAirlineCrashes" value="1" size="3">
+        and
+        <input type="text" name="hastaAirlineCrashes" value="10" size="3">
+        crashes </div>
+      <div class="filtrosVuelos">
+      <h3 id="trimesters">Trimesters</h3>
+      <div>Show me fight accidents that have happened <br><br></div> 
+      during:
+        <select name="trimestrer" id="trimestrer">
+          <option value="0">Whole year</option>
+          <option value="1">Jan - Mar</option>
+          <option value="2">Apr - Jun</option>
+          <option value="3">Jul - Sept</option>
+          <option value="4">Oct - Dic</option>
+        </select>
+      </div>
+      <div class="filtrosVuelos"> 
+      <h3 id="years">Years</h3>
+      <div>Show me flight accidents that have happened between<br><br></div>
+        <input type="text" name="desdeTimeCrashes" value="1" size="3">
+        and
+        <input type="text" name="hastaTimeCrashes" value="100" size="3">
+        years ago </div>
+      </div>
+      <div id="botonAfuera"><input name="Filter" type="button" id="Filter" title="Filter" value="Filter"></div>
+    </form>
+  </div>
 </div>
 <div id="envolturaFooter" class="fondo">
-  <div class="envolturaGenerica">
-  
-  </div>
+  <div class="envolturaGenerica"> </div>
 </div>
 <script src="static/js/d3.min.js"></script> 
 <script src="static/js/topojson.js"></script> 
-<script src="static/js/tooltip.js"></script>
+<script src="static/js/tooltip.js"></script> 
 <script src="static/js/drawMap.js"></script>
 </body>
 </html>
