@@ -9,10 +9,8 @@
 	
 	function firstLoad() { 		
         console.log("reading guest");        
-		var url="visitas?"+
-            "dia="+"Sabado"+"&"+
-            "hora="+"PM"+"&"+
-            "tipo="+"Global";
+		var url="trimestre?"+
+            "trimestre="+"3";
         d3.json(url, function (e, d) {
             crearArray(d.array);
 			console.log(d.array);
