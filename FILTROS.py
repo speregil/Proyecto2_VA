@@ -1,3 +1,12 @@
+#IMPORTANTE PARA NOMBRES DE CAMPOS DE JSON, SE DEBE HACER SIEMPRE QUE SE CARGUE UN NUEVO DF DEL ARCHIVO
+df.rename(columns={'OrigenCiudad': 'cityOrigen', 'OrigenLatitud': 'latOrigen', 'OrigenLongitud': 'lonOrigen',
+                  'DestinoCiudad': 'cityDestino', 'DestinoLatitud': 'latDestino', 'DestinoLongitud': 'lonDestino',
+                  'CrashCiudad': 'cityAccidente', 'CrashPais': 'countryAccidente', 'CrashLatitud': 'latAccidente',
+                  'CrashLongitud': 'lonAccidente'}, inplace=True)
+
+
+
+#TRIMESTRAL
 trimestre = 3 #ESTE ES EL TRIMESTRE, va de 1 a 4
 mesInicial = 0
 mesFinal = 0
@@ -13,12 +22,6 @@ elif(trimestre == 3):
 elif(trimestre == 4):
     mesInicial = 10
     mesFinal = 12
-
-#IMPORTANTE PARA NOMBRES DE CAMPOS DE JSON
-df.rename(columns={'OrigenCiudad': 'cityOrigen', 'OrigenLatitud': 'latOrigen', 'OrigenLongitud': 'lonOrigen',
-                  'DestinoCiudad': 'cityDestino', 'DestinoLatitud': 'latDestino', 'DestinoLongitud': 'lonDestino',
-                  'CrashCiudad': 'cityAccidente', 'CrashPais': 'countryAccidente', 'CrashLatitud': 'latAccidente',
-                  'CrashLongitud': 'lonAccidente'}, inplace=True)
 
 df["time"] = pd.to_datetime(df[df.columns[0]], format="%m/%d/%Y")
 df_tri = df.loc[(df["time"].dt.month >= mesInicial) & (df["time"].dt.month <= mesFinal)]
