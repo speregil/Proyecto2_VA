@@ -1,51 +1,13 @@
-/**
- *
- */
-	
-	var dataset;
-	var switchFirstTime = true;
-	var specificHeightDomainWhenUpdate;
-	firstLoad();
-	
-	function firstLoad() { 		
-        console.log("reading guest");        
-		var url="trimestre?trimestre=0";
-			console.log(url);
-        d3.json(url, function (e, d) {
-			console.log(e);
-            crearArray(d.array);
-			
-        });
-	
-    }
-    
-	
-	function crearArray(array){
-		dataset = array;
-		console.log("Llego la informacion");	
-		if(switchFirstTime==true){
-			console.log("es verdad");
-			createFirstTimeGraph();
-		}
-		else{
-			updateGraphstoDay();
-		}
-	}
-
-	
-	
-	
-function createFirstTimeGraph(){
 //Definición de variables de tamaño, colores, estilos
 var width = 1000,
     height = 500,
-	grosorLinea = 0.1,
-	radioCiudades = 2,
-	colorPuntoOrigen = "#0F0",
+	grosorLinea = 0.5,
+	radioCiudades = 4,
+	colorPuntoOrigen = "#F20057",
+	colorLineaOrigenAccidente = "#F20057",
 	colorPuntoAccidente="#EF609A",
-	colorPuntoDestino="#FCEE21",
-	colorLineaOrigenAccidente = "#8095A3",
-	colorLineaAccidenteDestino="#8095A3";
+	colorPuntoDestino="#EF8FB7",
+	colorLineaAccidenteDestino="#EF609A";
 
 var projection = d3.geo.mercator()
     .center([0, 20 ])
@@ -60,69 +22,20 @@ var path = d3.geo.path()
     .projection(projection);
 	
 //los grupos que creo en el svg para los difernetes puntos y lineas
-
-
-var g = svg.append("g").attr("class","mapa");
-var g1 = svg.append("g").attr("class","puntoOrigen");
+var g = svg.append("g").attr("class","puntoOrigen");;
 var g2 = svg.append("g").attr("class","puntoDestino");
 var g3 = svg.append("g").attr("class","puntoAccidente");
-var g4 = svg.append("g").attr("class","lineaOrigenAccidente");
-var g5 = svg.append("g").attr("class","lineaAccidenteDestino");
+var g4 = svg.append("g").attr("class","lineaVuelo");
+var g5 = svg.append("g").attr("class","lineaVuelo");
 
 // load and display the World
 d3.json("topology", function(error, topology) {
-g.selectAll("path")
-      .data(topojson.feature(topology, topology.objects.countries)
-.features)
-    .enter()
-      .append("path")
-      .attr("d", path)
-});
-
 
 // load and display the cities and connections
-	//Dibujar la linea de origen accidente
-	   g4.selectAll("line")
-       .data(dataset)
-       .enter()
-       .append("line")
-       .attr("x1", function(d) {
-               return projection([d.lonOrigen, d.latOrigen])[0];
-       })
-       .attr("y1", function(d) {
-               return projection([d.lonOrigen, d.latOrigen])[1];
-       })
-	   .attr("x2", function(d) {
-               return projection([d.lonAccidente, d.latAccidente])[0];
-       })
-       .attr("y2", function(d) {
-               return projection([d.lonAccidente, d.latAccidente])[1];
-       })
-       .attr("stroke-width", grosorLinea)
-	    .attr("stroke", colorLineaOrigenAccidente);
-		
-		//Dibujar la linea de accidente destino
-		g5.selectAll("line")
-       .data(dataset)
-       .enter()
-       .append("line")
-       .attr("x1", function(d) {
-               return projection([d.lonAccidente, d.latAccidente])[0];
-       })
-       .attr("y1", function(d) {
-               return projection([d.lonAccidente, d.latAccidente])[1];
-       })
-	   .attr("x2", function(d) {
-               return projection([d.lonDestino, d.latDestino])[0];
-       })
-       .attr("y2", function(d) {
-               return projection([d.lonDestino, d.latDestino])[1];
-       })
-       .attr("stroke-width", grosorLinea)
-	    .attr("stroke", colorLineaAccidenteDestino);
+d3.json("ciudades.json", function(error, data) {
 	//Dibujar los puntos de ciudades de origen
-    g1.selectAll("circle")
-       .data(dataset)
+    g.selectAll("circle")
+       .data(data)
        .enter()
        .append("circle")
        .attr("cx", function(d) {
@@ -148,7 +61,7 @@ g.selectAll("path")
         ));
 	 //Dibujar los puntos de ciudades de accidente
 	 g2.selectAll("circle")
-       .data(dataset)
+       .data(data)
        .enter()
        .append("circle")
        .attr("cx", function(d) {
@@ -175,7 +88,7 @@ g.selectAll("path")
         ));
 		//Dibujar los puntos de ciudades de destino
 	  g3.selectAll("circle")
-       .data(dataset)
+       .data(data)
        .enter()
        .append("circle")
        .attr("cx", function(d) {
@@ -199,7 +112,45 @@ g.selectAll("path")
 					"<b>Summary: </b>" + d.Summary+ "<br>";
         }
         ));
-	   
+	   //Dibujar la linea de origen accidente
+	   g4.selectAll("line")
+       .data(data)
+       .enter()
+       .append("line")
+       .attr("x1", function(d) {
+               return projection([d.lonOrigen, d.latOrigen])[0];
+       })
+       .attr("y1", function(d) {
+               return projection([d.lonOrigen, d.latOrigen])[1];
+       })
+	   .attr("x2", function(d) {
+               return projection([d.lonAccidente, d.latAccidente])[0];
+       })
+       .attr("y2", function(d) {
+               return projection([d.lonAccidente, d.latAccidente])[1];
+       })
+       .attr("stroke-width", grosorLinea)
+	    .attr("stroke", colorLineaOrigenAccidente);
+		
+		//Dibujar la linea de accidente destino
+		g5.selectAll("line")
+       .data(data)
+       .enter()
+       .append("line")
+       .attr("x1", function(d) {
+               return projection([d.lonAccidente, d.latAccidente])[0];
+       })
+       .attr("y1", function(d) {
+               return projection([d.lonAccidente, d.latAccidente])[1];
+       })
+	   .attr("x2", function(d) {
+               return projection([d.lonDestino, d.latDestino])[0];
+       })
+       .attr("y2", function(d) {
+               return projection([d.lonDestino, d.latDestino])[1];
+       })
+       .attr("stroke-width", grosorLinea)
+	    .attr("stroke", colorLineaAccidenteDestino);
 	   
 	   
      
@@ -218,9 +169,16 @@ g.selectAll("path")
       .style("fill", "black") // fill the text with the colour black
       .attr("text-anchor", "middle") // set anchor y justification
       .text(function(d) {return d.cityOrigen;}); // define the text to display*/
+});
 
 
-
+g.selectAll("path")
+      .data(topojson.feature(topology, topology.objects.countries)
+.features)
+    .enter()
+      .append("path")
+      .attr("d", path)
+});
 
 // zoom and pan
 var zoom = d3.behavior.zoom()
@@ -264,11 +222,3 @@ var zoom = d3.behavior.zoom()
   });
 
 svg.call(zoom)
-	 
-}
-			
-		
-				
-function updateGraphstoDay(){
-	
-}

@@ -3,9 +3,9 @@ import tornado.web
 import os
 import pandas as pd
 import json
-from geopy.geocoders import Nominatim
+#from geopy.geocoders import Nominatim
 
-geolocator = Nominatim()
+#geolocator = Nominatim()
 topology = None
 
 
@@ -36,11 +36,14 @@ class CuantosCiudadHandler(tornado.web.RequestHandler):
         
 class TrimestreHandler(tornado.web.RequestHandler):
     def get(self):
+        print("llegue a trimestre")
         df = self.df
         trimestre = self.get_argument("trimestre")
         df_datos = filtro_trimestre(trimestre, df)
         dic = df_datos.to_dict("record")
+        print(dic)
         self.write({"array":dic})
+        
     
     def initialize(self, df):
         self.df = df
@@ -86,17 +89,20 @@ def filtro_trimestre(trimestre, df):
     elif(trimestre == '4'):
         mesInicial = 10
         mesFinal = 12
+    elif(trimestre == '0'):
+        mesInicial = 1
+        mesFinal = 12
         
     df_tri = df.loc[(df["time"].dt.month >= mesInicial) & (df["time"].dt.month <= mesFinal)]
     df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
-                        'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
-                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+                        'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date',
+                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator'))
     for i in df_tri.index.values.tolist():
         df_final.loc[len(df_final)+1]=[df_tri['cityOrigen'][i], df_tri['latOrigen'][i], df_tri['lonOrigen'][i],
                                   df_tri['cityDestino'][i], df_tri['latDestino'][i], df_tri['lonDestino'][i],
                                   df_tri['cityAccidente'][i], df_tri['latAccidente'][i], df_tri['lonAccidente'][i],
-                                  df_tri[df.columns[0]][i], df_tri['Time'][i], df_tri['Type'][i], df_tri['Aboard'][i],
-                                  df_tri['Fatalities'][i], df_tri['Ground'][i], df_tri['Operator'][i], df_tri['Summary'][i]]
+                                  df_tri[df.columns[0]][i], df_tri['Type'][i], df_tri['Aboard'][i],
+                                  df_tri['Fatalities'][i], df_tri['Ground'][i], df_tri['Operator'][i]]
     return df_final
 
 def filtro_ciudades_origen(minimo, maximo, df):
@@ -181,7 +187,7 @@ def filtro_anios(minimo, maximo, df):
     print df_final
     
 if __name__ == "__main__":
-    path = os.path.join(os.path.dirname(__file__), "../../../df_final.csv")
+    path = os.path.join(os.path.dirname(__file__), "../../../Datos2utf8-2.csv")
     print("Iniciando...")
     print("Cargando Datos...")
     df = pd.read_csv(path)
