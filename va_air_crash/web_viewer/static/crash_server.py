@@ -90,15 +90,95 @@ def filtro_trimestre(trimestre, df):
     df_tri = df.loc[(df["time"].dt.month >= mesInicial) & (df["time"].dt.month <= mesFinal)]
     df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
                         'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
-                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Summary'))
+                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
     for i in df_tri.index.values.tolist():
         df_final.loc[len(df_final)+1]=[df_tri['cityOrigen'][i], df_tri['latOrigen'][i], df_tri['lonOrigen'][i],
                                   df_tri['cityDestino'][i], df_tri['latDestino'][i], df_tri['lonDestino'][i],
                                   df_tri['cityAccidente'][i], df_tri['latAccidente'][i], df_tri['lonAccidente'][i],
                                   df_tri[df.columns[0]][i], df_tri['Time'][i], df_tri['Type'][i], df_tri['Aboard'][i],
-                                  df_tri['Fatalities'][i], df_tri['Ground'][i], df_tri['Summary'][i]]
+                                  df_tri['Fatalities'][i], df_tri['Ground'][i], df_tri['Operator'][i], df_tri['Summary'][i]]
     return df_final
 
+def filtro_ciudades_origen(minimo, maximo, df):
+    minimo = int(minimo)
+    maximo = int(maximo)
+    list_cities = df["cityOrigen"].drop_duplicates().tolist()
+    list_count = df.groupby("cityOrigen")["cityOrigen"].count().tolist()
+    list_pair = zip(sorted(list_cities), list_count)
+    results = [t[0] for t in list_pair if (t[1] >= minimo) & (t[1] <= maximo)]
+    
+    df_crashes = df.loc[df["cityOrigen"].isin(results)]
+    
+    df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
+                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
+                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+    for i in df_crashes.index.values.tolist():
+            df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
+                                      df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
+                                      df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
+                                      df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+    
+    return df_final
+    
+def filtro_ciudades_destino(minimo, maximo, df):
+    minimo = int(minimo)
+    maximo = int(maximo)
+    list_cities = df["cityDestino"].drop_duplicates().tolist()
+    list_count = df.groupby("cityDestino")["cityDestino"].count().tolist()
+    list_pair = zip(sorted(list_cities), list_count)
+    results = [t[0] for t in list_pair if (t[1] >= minimo) & (t[1] <= maximo)]
+    
+    df_crashes = df.loc[df["cityDestino"].isin(results)]
+    
+    df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
+                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
+                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+    for i in df_crashes.index.values.tolist():
+            df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
+                                      df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
+                                      df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
+                                      df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+    
+    return df_final
+    
+def filtro_aerolineas(minimo, maximo, df):
+    minimo = int(minimo)
+    maximo = int(maximo)
+    list_airlines = df["Operator"].drop_duplicates().tolist()
+    list_count = df.groupby("Operator")["Operator"].count().tolist()
+    list_pair = zip(sorted(list_airlines), list_count)
+    results = [t[0] for t in list_pair if (t[1] >= minimo) & (t[1] <= maximo)]
+    
+    df_crashes = df.loc[df["Operator"].isin(results)]
+    
+    df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
+                            'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
+                            'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+    for i in df_crashes.index.values.tolist():
+            df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
+                                      df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
+                                      df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
+                                      df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                      df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+    
+    return df_final
+    
+def filtro_anios(minimo, maximo, df):
+    minimo = int(minimo)
+    maximo = int(maximo)
+    df_crashes = df.loc[(df["time"].dt.year >= 2009 - maximo ) & (df["time"].dt.year <= 2009 - minimo)]
+    df_final = pd.DataFrame(columns=('cityOrigen', 'latOrigen', 'lonOrigen', 'cityDestino', 'latDestino',
+                        'lonDestino', 'cityAccidente', 'latAccidente', 'lonAccidente', 'Date', 'Time',
+                        'Type', 'Aboard', 'Fatalities', 'Ground', 'Operator', 'Summary'))
+    for i in df_crashes.index.values.tolist():
+        df_final.loc[len(df_final)+1]=[df_crashes['cityOrigen'][i], df_crashes['latOrigen'][i], df_crashes['lonOrigen'][i],
+                                  df_crashes['cityDestino'][i], df_crashes['latDestino'][i], df_crashes['lonDestino'][i],
+                                  df_crashes['cityAccidente'][i], df_crashes['latAccidente'][i], df_crashes['lonAccidente'][i],
+                                  df_crashes[df.columns[0]][i], df_crashes['Time'][i], df_crashes['Type'][i], df_crashes['Aboard'][i],
+                                  df_crashes['Fatalities'][i], df_crashes['Ground'][i], df_crashes['Operator'][i], df_crashes['Summary'][i]]
+    print df_final
     
 if __name__ == "__main__":
     path = os.path.join(os.path.dirname(__file__), "../../../df_final.csv")
