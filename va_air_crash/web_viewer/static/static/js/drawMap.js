@@ -40,23 +40,19 @@ d3.json("ciudades.json", function(error, data) {
        })
        .attr("r", radioCiudades)
        .style("fill", colorRellenoCirculos)
-	   .on("mouseover", function(d) {
-		  //Get this bar's x/y values, then augment for the tooltip
-		  var xPosition = parseFloat(d3.select(this).attr("cx"));
-		  var yPosition = parseFloat(d3.select(this).attr("cy"));
-		
-		  //Update the tooltip position and value
-		  d3.select("#tooltip")
-			.style("left", xPosition + "px")
-			.style("top", yPosition + "px")           
-			.select("#value")
-			.text("origen: " + d.cityOrigen + "\n" + "destino: " + d.cityDestino + "\n" + "accidente: " + d.cityAccidente );
-		  //Show the tooltip
-		  d3.select("#tooltip").classed("hidden", false);
-		})
-		.on("mouseout", function() {
-		  d3.select("#tooltip").classed("hidden", true);   
-		});
+	   .call(d3.helper.tooltip(
+        function(d, i){
+          return	"<div class='infoFlight'><b class='tootltipResaltado'>From: " + d.cityOrigen + "</b><br>"+		  			
+					"<b>Crash place: "+d.cityAccidente+ "</b><br>"+
+					"<b>To: </b>" + d.cityDestino + "</div><br>"+
+					"<b>Date: </b>" + d.Date + "<br>"+
+					"<b>Hour: </b>" + d.Time+ "<br>"+
+					"<b>Pepole Aboard: </b>" + d.Aboard+ "<br>"+
+					"<b>Fatalities: </b>" + d.Fatalities+ "<br>"+
+					"<b>Fatalities on ground: </b>" + d.Ground+ "<br>"+
+					"<b>Summary: </b>" + d.Summary+ "<br>";
+        }
+        ));
 	   
 	 g2.selectAll("circle")
        .data(data)
@@ -69,7 +65,21 @@ d3.json("ciudades.json", function(error, data) {
                return projection([d.lonAccidente, d.latAccidente])[1];
        })
        .attr("r", radioCiudades)
-       .style("fill", colorRellenoCirculos);
+       .style("fill", "#EF609A")
+	   .call(d3.helper.tooltip(
+        function(d, i){
+          return	"<div class='infoFlight'><b>From: </b>" + d.cityOrigen + "<br>"+
+		  			"<b class='tootltipResaltado'>Crash place: "+d.cityAccidente+ "</b><br>"+
+		  			"<b>To: </b>" + d.cityDestino + "<br></div><br>"+					
+					"<b>Date: </b>" + d.Date + "<br>"+
+					"<b>Hour: </b>" + d.Time+ "<br>"+
+					"<b>Pepole Aboard: </b>" + d.Aboard+ "<br>"+
+					"<b>Fatalities: </b>" + d.Fatalities+ "<br>"+
+					"<b>Fatalities on ground: </b>" + d.Ground+ "<br>"+
+					"<b>Summary: </b>" + d.Summary+ "<br>";
+  
+        }
+        ));
 	  g3.selectAll("circle")
        .data(data)
        .enter()
@@ -81,7 +91,20 @@ d3.json("ciudades.json", function(error, data) {
                return projection([d.lonDestino, d.latDestino])[1];
        })
        .attr("r", radioCiudades)
-       .style("fill", colorRellenoCirculos);
+       .style("fill", "#EF8FB7")
+	   .call(d3.helper.tooltip(
+        function(d, i){
+          return	"<div class='infoFlight'><b>From: </b>" + d.cityOrigen + "<br>"+
+		  			"<b>Crash place: "+d.cityAccidente+ "</b><br>"+
+		  			"<b class='tootltipResaltado'>To: " + d.cityDestino + "</b><br></div><br>"+					
+					"<b>Date: </b>" + d.Date + "<br>"+
+					"<b>Hour: </b>" + d.Time+ "<br>"+
+					"<b>Pepole Aboard: </b>" + d.Aboard+ "<br>"+
+					"<b>Fatalities: </b>" + d.Fatalities+ "<br>"+
+					"<b>Fatalities on ground: </b>" + d.Ground+ "<br>"+
+					"<b>Summary: </b>" + d.Summary+ "<br>";
+        }
+        ));
 	   
 	   g4.selectAll("line")
        .data(data)
@@ -100,7 +123,9 @@ d3.json("ciudades.json", function(error, data) {
                return projection([d.lonAccidente, d.latAccidente])[1];
        })
        .attr("stroke-width", grosorLinea)
-	    .attr("stroke", colorLinea);
+	    .attr("stroke", "#EF609A");
+		
+		
 		g5.selectAll("line")
        .data(data)
        .enter()
@@ -118,11 +143,11 @@ d3.json("ciudades.json", function(error, data) {
                return projection([d.lonDestino, d.latDestino])[1];
        })
        .attr("stroke-width", grosorLinea)
-	    .attr("stroke", colorLinea);
+	    .attr("stroke", "#EF609A");
 	   
 	   
      
-     g.selectAll("text")
+    /* g.selectAll("text")
        .data(data)
        .enter()
      .append("text") // append text
@@ -135,7 +160,7 @@ d3.json("ciudades.json", function(error, data) {
        .attr("dy", -7) // set y position of bottom of text
       .style("fill", "black") // fill the text with the colour black
       .attr("text-anchor", "middle") // set anchor y justification
-      .text(function(d) {return d.cityOrigen;}); // define the text to display
+      .text(function(d) {return d.cityOrigen;}); // define the text to display*/
 });
 
 
@@ -169,6 +194,20 @@ var zoom = d3.behavior.zoom()
         g3.selectAll("circle")
             .attr("d", path.projection(projection));
         g3.selectAll("path")  
+            .attr("d", path.projection(projection)); 
+
+	g4.attr("transform","translate("+ 
+            d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+        g4.selectAll("circle")
+            .attr("d", path.projection(projection));
+        g4.selectAll("path")  
+            .attr("d", path.projection(projection)); 
+			
+	g5.attr("transform","translate("+ 
+            d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+        g5.selectAll("circle")
+            .attr("d", path.projection(projection));
+        g5.selectAll("path")  
             .attr("d", path.projection(projection)); 
     
 

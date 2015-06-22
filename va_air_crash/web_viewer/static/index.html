@@ -2,70 +2,6 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
-<style type="text/css">
-
-			rect:hover {
-				fill: orange;
-			}
-			
-			#tooltip {
-				position: absolute;
-				width: 200px;
-				height: auto;
-				padding: 10px;
-				background-color: white;
-				-webkit-border-radius: 10px;
-				-moz-border-radius: 10px;
-				border-radius: 10px;
-				-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-				-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-				pointer-events: none;
-			}
-			
-			#tooltip.hidden {
-				display: none;
-			}
-			
-			#tooltip p {
-				margin: 0;
-				font-family: sans-serif;
-				font-size: 16px;
-				line-height: 20px;
-			}
-
-
-.axis {
-  font: 10px sans-serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.axis .domain {
-  fill: none;
-  stroke: #000;
-  stroke-opacity: .3;
-  stroke-width: 10px;
-  stroke-linecap: round;
-}
-
-.axis .halo {
-  fill: none;
-  stroke: #ddd;
-  stroke-width: 8px;
-  stroke-linecap: round;
-}
-
-.slider .handle {
-  fill: #fff;
-  stroke: #000;
-  stroke-opacity: .5;
-  stroke-width: 1.25px;
-  cursor: crosshair;
-}
-
-		</style>
 </head>
 <body>
 <div id="envolturaCabezote" class="fondo">
@@ -78,11 +14,9 @@
 </div>
 <div id="envolturaMapa" class="fondo">
   <div class="envolturaGenerica">
-  <div id="tooltip" class="hidden">
-			<p><strong>Datos Accidente</strong></p>
-			<p><span id="value"></span></p>
-		</div>
+  
     <div id="mapa"> </div>
+    
     <div id="mapaSliders"> </div>
   </div>
 </div>
@@ -90,10 +24,13 @@
   <div class="envolturaGenerica"></div>
 </div>
 <div id="envolturaFooter" class="fondo">
-  <div class="envolturaGenerica"></div>
+  <div class="envolturaGenerica">
+  
+  </div>
 </div>
 <script src="static/js/d3.min.js"></script> 
 <script src="static/js/topojson.js"></script> 
+<script src="static/js/tooltip.js"></script>
 <script src="static/js/drawMap.js"></script>
 </body>
 </html>
