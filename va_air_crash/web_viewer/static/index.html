@@ -63,31 +63,38 @@
 </div>
 <div id="envolturaOtros" class="fondo">
   <div class="envolturaGenerica">
-    <form>
+ 
     <div id="todosFiltros">
       <div class="filtrosVuelos"> 
       <h3 id="departure">Departure cities</h3>
       <div>
-      Show me flights from departure cities that have been involved between
+      Show me flights from departure cities that have been involved between<br><br>
       </div>
-        <input name="desdeDepartureCrashes" type="text" value="1" size="3">
+        <input name="desdeDepartureCrashes" id="desdeDepartureCrashes" type="text" value="1" size="3">
         and
-        <input type="text" name="hastaDepartureCrashes" value="10" size="3">
-        crashes </div>
+        <input type="text" name="hastaDepartureCrashes" id="hastaDepartureCrashes" value="10" size="3">
+        crashes 
+        <input name="FilterOrigen" type="button" id="FilterOrigen" title="FilterOrigen" value="Filter Departures">
+        </div>
+        
       <div class="filtrosVuelos"> 
       <h3 id="arrival">Arrival cities</h3>
-      <div>Show me flights to arrival cities that have been involved between</div>
-        <input type="text" name="desdeArrivalCrashes" value="1" size="3">
+      <div>Show me flights to arrival cities that have been involved between<br><br></div>
+        <input type="text" name="desdeArrivalCrashes" id="desdeArrivalCrashes" value="1" size="3">
         and
-        <input type="text" name="hastaArrivalCrashes" value="10" size="3">
-        crashes </div>
+        <input type="text" name="hastaArrivalCrashes" id="hastaArrivalCrashes" value="10" size="3">
+        crashes 
+        <input name="FilterDestino" type="button" id="FilterDestino" title="FilterDestino" value="Filter Arrivals">
+        </div>
       <div class="filtrosVuelos"> 
       <h3 id="Airlines">Airlines</h3>
       <div>Show me Airlines that have been involved between<br><br></div>
-        <input type="text" name="desdeAirlineCrashes" value="1" size="3">
+        <input type="text" name="desdeAirlineCrashes" id="desdeAirlineCrashes" value="1" size="3">
         and
-        <input type="text" name="hastaAirlineCrashes" value="10" size="3">
-        crashes </div>
+        <input type="text" name="hastaAirlineCrashes" id="hastaAirlineCrashes" value="10" size="3">
+        crashes 
+        <input name="FilterAerolinea" type="button" id="FilterAerolinea" title="FilterAerolinea" value="Filter Operators">
+        </div>
       <div class="filtrosVuelos">
       <h3 id="trimesters">Trimesters</h3>
       <div>Show me fight accidents that have happened <br><br></div> 
@@ -99,17 +106,18 @@
           <option value="3">Jul - Sept</option>
           <option value="4">Oct - Dic</option>
         </select>
+        <input name="FilterTemporada" type="button" id="FilterTemporada" title="FilterTemporada" value="Filter by Trimester">
       </div>
-      <div class="filtrosVuelos"> 
+      <!--<div class="filtrosVuelos"> 
       <h3 id="years">Years</h3>
       <div>Show me flight accidents that have happened between<br><br></div>
         <input type="text" name="desdeTimeCrashes" value="1" size="3">
         and
         <input type="text" name="hastaTimeCrashes" value="100" size="3">
         years ago </div>
-      </div>
-      <div id="botonAfuera"><input name="Filter" type="button" id="Filter" title="Filter" value="Filter"></div>
-    </form>
+      </div>-->
+      <div id="botonAfuera"></div>
+ 
   </div>
 </div>
 <div id="envolturaFooter" class="fondo">
@@ -152,6 +160,22 @@
 				});
 				$('.mostrarLineaAccienteDestino').click(function(){								
 					$('#mapa svg .lineaAccidenteDestino').css({"opacity": 1 });					
+				});
+				$('#FilterOrigen').click(function(){								
+					console.log("click en filtro origen");
+					OrigenLoad();					
+				});
+				$('#FilterDestino').click(function(){								
+					console.log("click en filtro origen");
+					DestinoLoad();					
+				});
+				$('#FilterAerolinea').click(function(){								
+					console.log("click en filtro origen");
+					AereolineaLoad();					
+				});
+				$('#FilterTemporada').click(function(){								
+					console.log("click en filtro origen");
+					TrimestreLoad();					
 				});
 				
 				
